@@ -1539,6 +1539,21 @@ public class ElementTest {
         assertEquals("P", a.tagName());
     }
 
+
+    @Test
+    /**
+     * Teste l'instanciation d'un Element avec un namespace spécifique.
+     * Crée l'élément via le constructeur de classe correspondant ( qui n'était préalablement pas testé)
+     * Fait deux assert pour vérifier que le tagname et le namespace sont bien attribués
+     * @author Corélie Godefroid
+     */
+    public void testCreateElementWithNamespace(){
+        Element a = new Element( "comments","fb");
+        Tag tag_de_a=a.tag();
+        assertEquals("fb",tag_de_a.namespace());
+        assertEquals("comments",a.tagName());
+    }
+
     @Test
     public void testChildrenElements() {
         String html = "<div><p><a>One</a></p><p><a>Two</a></p>Three</div><span>Four</span><foo></foo><img>";

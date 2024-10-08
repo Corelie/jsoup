@@ -3,7 +3,16 @@ package org.jsoup.nodes;
 import org.jsoup.Jsoup;
 import org.jsoup.parser.ParseSettings;
 import org.jsoup.parser.Parser;
+import org.jsoup.parser.Tag;
+import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.Objects;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -89,4 +98,82 @@ public class AttributeTest {
         Document doc2 = Jsoup.parse(html, Parser.htmlParser().settings(ParseSettings.preserveCase));
         assertEquals("<a href=\"autofocus\" REQUIRED>One</a>", doc2.selectFirst("a").outerHtml());
     }
+
+    @ParameterizedTest
+    /**
+     * Teste la fonction getValidKey ainsi que tous les cas des deux sous fonctions qu'elle appelle:
+     * isValidXmlKey et isValidHtmlKey.
+     * Celles-ci permettent de vérifier la validité d'une clé XML ou HTML.
+     * Le test permet également de révéler ce qui je pense être une erreur dans le code, le charactère 174,
+     * qui correspond au symbole trademark est accepté comme une valeur valide de clé HTML. J'explique plus le problème
+     * dans le rapport.
+     * @author Corélie Godefroid
+     */
+    @MethodSource("keyValidityGenerator")
+    public void testGetValidKey(String input, String expected, Document.OutputSettings.Syntax syntax){
+        String actual=Attribute.getValidKey(input,syntax);
+        assertEquals(expected,actual);
+
+    }
+
+    /**
+    * génère les données pour le test testGetValidKey
+     * @author Corélie Godefroid
+     */
+    private static Stream<Arguments> keyValidityGenerator() {
+        return Stream.of(
+                Arguments.of("!test","_test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("te!st","te_st",Document.OutputSettings.Syntax.xml),
+                Arguments.of("test","test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("",null,Document.OutputSettings.Syntax.xml),
+                Arguments.of("TEST","TEST",Document.OutputSettings.Syntax.xml),
+                Arguments.of(":test",":test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("_test","_test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("a_test","a_test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("z_test","z_test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("A_test","A_test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("Z_test","Z_test",Document.OutputSettings.Syntax.xml),
+                Arguments.of("1test",null,Document.OutputSettings.Syntax.xml),
+                Arguments.of("",null,Document.OutputSettings.Syntax.html),
+                Arguments.of(new String(new char[] { 31 }), "_", Document.OutputSettings.Syntax.html) ,
+                Arguments.of(new String(new char[] { 127 }), "_", Document.OutputSettings.Syntax.html),
+                Arguments.of(new String(new char[] { 159 }), "_", Document.OutputSettings.Syntax.html),
+                Arguments.of(" ", "_", Document.OutputSettings.Syntax.html),
+                Arguments.of("\"", "_", Document.OutputSettings.Syntax.html),
+                Arguments.of("\'", "_", Document.OutputSettings.Syntax.html),
+                Arguments.of("/", "_", Document.OutputSettings.Syntax.html),
+                Arguments.of("=", "_", Document.OutputSettings.Syntax.html),
+                Arguments.of("A", "A", Document.OutputSettings.Syntax.html),
+                Arguments.of(new String(new char[] { 174}), new String(new char[] { 174}), Document.OutputSettings.Syntax.html)
+        );
+    }
+
+    @ParameterizedTest
+    /**
+     * Teste la méthode equals de Attribute.
+     * Prends en entrée main l'Attribute qui va appeler la méthode equals avec en entrée le deuxième argument
+     * Object compared. Expected est la valeur attendue de cette égalité, c'est un Boolean.
+     */
+    @MethodSource("equalsGenerator")
+    public void testAttributeEquals(Attribute main, Object compared, Boolean expected){
+
+        Boolean actual= main.equals(compared);
+        assertEquals(expected,actual);
+    }
+
+    private static Stream<Arguments> equalsGenerator() {
+        Attribute a = new Attribute("test", null);
+        return Stream.of(
+                Arguments.of(a, a, true), //même element
+                Arguments.of(a, new Element("p"), false), //différente classe
+                Arguments.of(a, new Attribute("abc", null), false), //différente clé
+                Arguments.of(a, new Attribute("test", "val"), false), //différente valeur
+                Arguments.of(a, new Attribute("abc", "val"), false), // tout différent
+                Arguments.of(a, new Attribute("test", null), true), //identique
+                Arguments.of(a, null, false) //null
+
+        );
+    }
+
+   
 }
