@@ -46,7 +46,7 @@ public class ValidateTest {
 
 @Test
 /**
- * Teste les 2 fonctions notEmpty et la fonction notEmptyParam de Validate. Ces 3 fonctions font exactement la même chose,
+ * Teste les 2 méthodes notEmpty et la méthode notEmptyParam de Validate. Ces 3 méthodes font exactement la même chose,
  * ce pourquoi j'ai jugé bon de les réunir dans un même test. Les trois prennent en entrée un string vérifie s'il est vide
  * et si oui jettent une Exception. La seule différence est le message affiché, le premier notEmpty n'en affiche pas,
  * le second prends un string en entrée et l'affiche et notEmptyParam prends le nom du paramètre en entrée et l'affiche

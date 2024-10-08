@@ -105,9 +105,9 @@ public class AttributeTest {
      * Teste la fonction getValidKey ainsi que tous les cas des deux sous fonctions qu'elle appelle:
      * isValidXmlKey et isValidHtmlKey.
      * Celles-ci permettent de vérifier la validité d'une clé XML ou HTML.
-     * Le test permet également de révéler ce qui je pense être une erreur dans le code, le charactère 174,
-     * qui correspond au symbole trademark est accepté comme une valeur valide de clé HTML. J'explique plus le problème
-     * dans le rapport.
+     * Le test permet également de révéler ce qui je pense être une erreur dans le code,le symbole >,
+     * est accepté comme une valeur valide de clé HTML.Je n'ai pas modifié le test pour pouvoir les rouler en automatique.
+     * J'explique plus le problème dans le rapport.
      * @author Corélie Godefroid
      */
     @MethodSource("keyValidityGenerator")
@@ -145,7 +145,8 @@ public class AttributeTest {
                 Arguments.of("/", "_", Document.OutputSettings.Syntax.html),
                 Arguments.of("=", "_", Document.OutputSettings.Syntax.html),
                 Arguments.of("A", "A", Document.OutputSettings.Syntax.html),
-                Arguments.of(new String(new char[] { 174}), new String(new char[] { 174}), Document.OutputSettings.Syntax.html)
+                Arguments.of(new String(new char[] { 174}), new String(new char[] { 174}), Document.OutputSettings.Syntax.html),
+                Arguments.of(">", ">", Document.OutputSettings.Syntax.html) //est accepte dans le code actuel mais normalement devrait retourner "_"
         );
     }
 
