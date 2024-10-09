@@ -18,7 +18,7 @@ element : class 100% (3/3) method 99% (152/153) line 99% (496/499) branch 96% (5
 Attribute: class 100% (1/1) method 80% (21/26) line 87% (87/100) branch 75% (158/208)
 Validate : class 100% (1/1) method 83% (15/18) line 78% (37/47) branch 76% (52/68)
 HtmlTreeBuilderState: class 96% (26/27) method 98% (70/71) line 87% (1155/1323) branch 82% (1418/1720)
-## 1. testCreateElementWithNamespace()
+## 6. testCreateElementWithNamespace()
 [Lien du test](https://github.com/Corelie/jsoup/blob/b288242cb6c8705215803c34ddb7b612e65b2998/src/test/java/org/jsoup/nodes/ElementTest.java#L1543-L1555)
 
 Ce test a pour but de tester le constructeur suivant de la classe Element:
@@ -31,7 +31,7 @@ Ce constructeur a pour but de créer un objet Element dans un namespace spécifi
 
 Nous avons donc créé un test simple pour vérifier que ce constructeur fait bien ce qui est attendu de lui, ce test crée un nouvel Element et ensuite vérifie que les valeurs que nous lui avons données lui ont bien été attribuées.
 
-## 2. testGetValidKey()
+## 7. testGetValidKey()
 [Lien du test](https://github.com/Corelie/jsoup/blob/968bf62e0b941c08c0028f06a4a918a097c8750c/src/test/java/org/jsoup/nodes/AttributeTest.java#L103-L151)
 
 Ce test a pour but de tester la méthode getValidKey() de la classe Attribute. Il teste également les deux méthodes appelées par celle-ci : isValidXmlKey et isValidHtmlKey.
@@ -47,20 +47,20 @@ Or en lisant la [documentation d'html](https://html.spec.whatwg.org/multipage/sy
 
 Cette erreur montre bien l'importance des tests pour cette méthode.
 
-## 3. testAttributeEquals()
+## 8. testAttributeEquals()
 [Lien du test](https://github.com/Corelie/jsoup/blob/968bf62e0b941c08c0028f06a4a918a097c8750c/src/test/java/org/jsoup/nodes/AttributeTest.java#L153-L190)
 
 Ce test a pour but de tester la méthode equals() de la classe Attribute. Cette méthode vient définir l'égalité entre deux objets Attribute. Étant donné qu'elle est utilisé à de nombreux endroits dans le code et notamment dans des tests (puisque assertEquals() de deux Attribute vient utiliser cette méthode) il est très important de s'assurer de son bon fonctionnement.
 Nous avons utilisé un test paramétré pour tester tous les cas de non égalité ou d'égalité, ainsi que la bibliothèque java-faker pour générer des cas différents.
 
-## 4. testAttributeClone()
+## 9. testAttributeClone()
 [Lien du test](https://github.com/Corelie/jsoup/blob/968bf62e0b941c08c0028f06a4a918a097c8750c/src/test/java/org/jsoup/nodes/AttributeTest.java#L191-L208)
 
 Ce test vérifie la méthode clone() de la classe Attribute.
 Cette méthode est utilisée à plusieurs endroits dans le code il est donc important de s'assurer de son bon fonctionnement.
 Nous utilisons la bibliothèque java-faker pour génerer un objet Attribute à chaque test, nous appliquons la méthode clone() dessus puis testons pour vérifier qu'il est bien égal à l'original.
 
-## 5. testNotEmpty()
+## 10. testNotEmpty()
 [Lien du test](https://github.com/Corelie/jsoup/blob/968bf62e0b941c08c0028f06a4a918a097c8750c/src/test/java/org/jsoup/helper/ValidateTest.java#L47-L82)
 
 Ce test valide les 2 méthodes notEmpty et la méthode notEmptyParam de la classe Validate. Ces 3 méthodes font exactement la même chose, c'est pourquoi nous avons jugé bon de les réunir dans un même test. Les trois prennent en entrée un string vérifie s'il est vide et si oui lancent une exception. La seule différence est le message affiché:  le premier notEmpty n'en affiche pas, le second prends un string en entrée et l'affiche et notEmptyParam prends le nom du paramètre en entrée et l'affiche dans le message.
