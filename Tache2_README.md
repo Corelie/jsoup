@@ -74,7 +74,7 @@ Ces méthodes notEmpty vérifient la validité de strings à de nombreux endroit
 Le test vérifie que l'exception est bien lancée et que le bon message est affiché si le string est vide ou null.  Il vérifie également qu'aucune exception n'est levée en cas de string valide.
 
 ## 6. testBeforeHeadStateProcess()
-[Lien du test](https://github.com/MarielLeano/jsoup/blob/main/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java)
+[Lien du test](https://github.com/Corelie/jsoup/blob/deb8e4482feea981ee052b7c414a5122cb4d9093/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java#L129-L169)
 
 Ce test vise à vérifier le comportement de l'état BeforeHead dans le HtmlTreeBuilder lors du traitement de différents types de tokens. Nous testons ici les cas suivants :
 
@@ -86,24 +86,24 @@ Ce test vise à vérifier le comportement de l'état BeforeHead dans le HtmlTree
 Ces tests sont cruciaux pour s'assurer que le constructeur gère correctement la phase BeforeHead, permettant un traitement fluide des documents HTML bien formés ou mal formés dès le début de la construction du DOM.
 
 ## 7. testProcessNobrTagInTreeBuilder()
-[Lien du test](https://github.com/MarielLeano/jsoup/blob/main/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java)
+[Lien du test](https://github.com/Corelie/jsoup/blob/deb8e4482feea981ee052b7c414a5122cb4d9093/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java#L170-L193)
 
 Ce test vérifie le comportement du HtmlTreeBuilder lors du traitement de la balise nobr dans l'état InBody. La balise nobr est utilisée pour interdire le retour à la ligne dans une section de texte. Le test simule un document HTML contenant les balises html, body, et nobr, et s'assure que la balise est bien gérée et ajoutée aux éléments de formatage actif. Ce test est essentiel pour garantir que le constructeur traite correctement les balises non standards ou spécifiques.
 
 
 ## 8. testInBodyStartApplets()
-[Lien du test](https://github.com/MarielLeano/jsoup/blob/main/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java)
+[Lien du test](https://github.com/Corelie/jsoup/blob/deb8e4482feea981ee052b7c414a5122cb4d9093/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java#L195-L217)
 
 Ce test examine comment le HtmlTreeBuilder traite la balise applet dans l'état InBody. Cette balise, rarement utilisée, est gérée de manière spéciale dans les documents HTML. Le test simule l'ouverture d'une balise applet, vérifie qu'elle est ajoutée à la pile d'éléments ouverts, puis simule la fermeture de la balise pour s'assurer qu'elle est correctement retirée de la pile. Ce test garantit que la gestion des balises obsolètes comme applet est bien prise en charge par le parser.
 
 
 ## 9. testProcessEndTagCaptionInCaption()
-[Lien du test](https://github.com/MarielLeano/jsoup/blob/main/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java)
+[Lien du test](https://github.com/Corelie/jsoup/blob/deb8e4482feea981ee052b7c414a5122cb4d9093/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java#L219-L238)
 
 Ce test est conçu pour vérifier le comportement du HtmlTreeBuilder lorsqu'il rencontre une balise de fin caption dans l'état InCaption. La balise caption est utilisée dans les tableaux HTML pour donner un titre aux éléments. Ce test vérifie que la fermeture d'une balise caption dans cet état échoue comme prévu, assurant ainsi une gestion correcte des erreurs et des structures mal formées dans le DOM.
 
 
 ## 10. testProcessEndTagColgroup()
-[Lien du test](https://github.com/MarielLeano/jsoup/blob/main/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java)
+[Lien du test](https://github.com/Corelie/jsoup/blob/deb8e4482feea981ee052b7c414a5122cb4d9093/src/test/java/org/jsoup/parser/HtmlTreeBuilderStateTest.java#L240-L266)
 
 Ce test valide le traitement des balises de fin colgroup dans l'état InColumnGroup. La balise colgroup est utilisée dans les tableaux HTML pour spécifier un groupe de colonnes avec un format particulier. Le test simule un document HTML contenant une balise table et une balise colgroup, puis vérifie que la balise de fin colgroup est traitée correctement, garantissant ainsi que les tableaux HTML sont construits conformément aux spécifications du DOM.
