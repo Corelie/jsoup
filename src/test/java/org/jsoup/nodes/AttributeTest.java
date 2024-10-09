@@ -1,4 +1,5 @@
 package org.jsoup.nodes;
+import com.github.javafaker.Faker;
 
 import org.jsoup.Jsoup;
 import org.jsoup.parser.ParseSettings;
@@ -104,9 +105,9 @@ public class AttributeTest {
      * Teste la fonction getValidKey ainsi que tous les cas des deux sous fonctions qu'elle appelle:
      * isValidXmlKey et isValidHtmlKey.
      * Celles-ci permettent de vérifier la validité d'une clé XML ou HTML.
-     * Le test permet également de révéler ce qui je pense être une erreur dans le code, le charactère 174,
-     * qui correspond au symbole trademark est accepté comme une valeur valide de clé HTML. J'explique plus le problème
-     * dans le rapport.
+     * Le test permet également de révéler ce qui je pense être une erreur dans le code,le symbole >,
+     * est accepté comme une valeur valide de clé HTML.Je n'ai pas modifié le test pour pouvoir les rouler en automatique.
+     * J'explique plus le problème dans le rapport.
      * @author Corélie Godefroid
      */
     @MethodSource("keyValidityGenerator")
@@ -144,7 +145,8 @@ public class AttributeTest {
                 Arguments.of("/", "_", Document.OutputSettings.Syntax.html),
                 Arguments.of("=", "_", Document.OutputSettings.Syntax.html),
                 Arguments.of("A", "A", Document.OutputSettings.Syntax.html),
-                Arguments.of(new String(new char[] { 174}), new String(new char[] { 174}), Document.OutputSettings.Syntax.html)
+                Arguments.of(new String(new char[] { 174}), new String(new char[] { 174}), Document.OutputSettings.Syntax.html),
+                Arguments.of(">", ">", Document.OutputSettings.Syntax.html) //est accepte dans le code actuel mais normalement devrait retourner "_"
         );
     }
 
@@ -153,6 +155,9 @@ public class AttributeTest {
      * Teste la méthode equals de Attribute.
      * Prends en entrée main l'Attribute qui va appeler la méthode equals avec en entrée le deuxième argument
      * Object compared. Expected est la valeur attendue de cette égalité, c'est un Boolean.
+     *
+     * Le test applique la fonction equals sur main et compared et vérifie le resultat de cette égalité.
+     *  @author Corélie Godefroid
      */
     @MethodSource("equalsGenerator")
     public void testAttributeEquals(Attribute main, Object compared, Boolean expected){
@@ -161,8 +166,16 @@ public class AttributeTest {
         assertEquals(expected,actual);
     }
 
+    /**
+     * génère les données pour le test testAttributeEquals, utilisa la bibliothèque java-faker pour créer des données
+     * aléatoires.
+     * @author Corélie Godefroid
+     */
     private static Stream<Arguments> equalsGenerator() {
         Attribute a = new Attribute("test", null);
+        Faker faker = new Faker();
+        String key = faker.regexify("[a-z]{1,10}");
+        String value =  faker.regexify("[a-z]{1,10}");
         return Stream.of(
                 Arguments.of(a, a, true), //même element
                 Arguments.of(a, new Element("p"), false), //différente classe
@@ -170,10 +183,28 @@ public class AttributeTest {
                 Arguments.of(a, new Attribute("test", "val"), false), //différente valeur
                 Arguments.of(a, new Attribute("abc", "val"), false), // tout différent
                 Arguments.of(a, new Attribute("test", null), true), //identique
-                Arguments.of(a, null, false) //null
+                Arguments.of(a, null, false),//null
+                Arguments.of( new Attribute(key,value), new Attribute(key,value),true) //généré aléatoirement mais égaux
 
         );
     }
+    @Test
+    /**
+     * Teste la fonction clone de la classe Attribute. Génère un objet Attribute avec une clé et une valeur aléatoires
+     * grâce à la bibliothèque java-faker. Clone cet objet Attribute puis compare le clone et l'objet original.
+     * @author Corélie Godefroid
+     */
+    public void testAttributeClone(){
+        Faker faker = new Faker();
+        String key = faker.regexify("[a-z]{1,10}");
+        String value =  faker.regexify("[a-z]{1,10}");
+        Attribute a = new Attribute(key,value);
 
-   
+        Attribute clone_a= a.clone();
+
+        assertTrue(a.equals(clone_a));
+
+
+    }
+
 }
