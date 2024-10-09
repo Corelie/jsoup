@@ -2,9 +2,22 @@
 ### Mariel Leano -20218008 Corélie Godefroid -20205217
 ### Choix de l'étude de cas : jsoup
 
+## Coverage sans l'ajout de nos tests
+|fichier|class|method|line| branch          |
+|---|---|---|---|-----------------|
+| general |96% (254/263)|92% (1730/1879)|89% (8342/9296)| 85% (8360/9806) |
+|Element|100% (3/3)|99% (152/153)|99% (496/499)| 96% (556/576)   |
+| Attribute| 100% (1/1)|80% (21/26)|87% (87/100)| 75% (158/208)   |
+|Validate|100% (1/1)|83% (15/18)| 78% (37/47)| 76% (52/68)     |
+| HtmlTreeBuilderState| 96% (26/27)|98% (70/71)|87% (1155/1323)| 82% (1418/1720) |
 # Explications des tests:
 
 
+general: class 96% (254/263) method 92% (1730/1879) line 89% (8342/9296) branch 85% (8360/9806)
+element : class 100% (3/3) method 99% (152/153) line 99% (496/499) branch 96% (556/576)
+Attribute: class 100% (1/1) method 80% (21/26) line 87% (87/100) branch 75% (158/208)
+Validate : class 100% (1/1) method 83% (15/18) line 78% (37/47) branch 76% (52/68)
+HtmlTreeBuilderState: class 96% (26/27) method 98% (70/71) line 87% (1155/1323) branch 82% (1418/1720)
 ## 1. testCreateElementWithNamespace()
 [Lien du test](https://github.com/Corelie/jsoup/blob/b288242cb6c8705215803c34ddb7b612e65b2998/src/test/java/org/jsoup/nodes/ElementTest.java#L1543-L1555)
 Ce test a pour but de tester le constructeur suivant de la classe Element:
