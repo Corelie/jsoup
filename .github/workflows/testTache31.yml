@@ -30,7 +30,7 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-ea"
+          JAVA_TOOL_OPTIONS: "-Xmx2g"
 
       - name: Get JaCoCo Coverage
         id: coverage  
