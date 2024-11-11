@@ -1,4 +1,4 @@
-name: TestTache32
+name: TestTache33
 on:
   push:
   pull_request:
@@ -30,7 +30,7 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-XX:+ExitOnOutOfMemoryError"
+          JAVA_TOOL_OPTIONS: "-XX:+ExitOnOutOfMemoryError -XX:+ExitOnError"
 
       - name: Get JaCoCo Coverage
         id: coverage  
