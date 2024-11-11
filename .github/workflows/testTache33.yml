@@ -30,7 +30,12 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-XX:+ExitOnOutOfMemoryError -XX:+ExitOnError"
+          JAVA_TOOL_OPTIONS: "-XX:+ExitOnOutOfMemoryError "
+          
+      - name: Flags supplementaires utilisees
+        run: |
+          echo "Les flags supplementaires utilises sont : -XX:+ExitOnOutOfMemoryError"
+    
 
       - name: Get JaCoCo Coverage
         id: coverage  

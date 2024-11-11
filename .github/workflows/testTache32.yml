@@ -30,7 +30,11 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-XX:+PrintGCDetails"
+          JAVA_TOOL_OPTIONS: "-Xlog:gc*"
+    
+      - name: Flags supplementaires utilisees
+        run: |
+            echo "Les flags supplementaires utilises sont : -Xlog:gc*"
 
       - name: Get JaCoCo Coverage
         id: coverage  

@@ -32,6 +32,10 @@ jobs:
         env:
           JAVA_TOOL_OPTIONS: "-Xmx2g -Xms1g"
 
+      - name: Flags supplementaires utilisees
+        run: |
+            echo "Les flags supplementaires utilises sont : -Xmx2g -Xms1g"
+
       - name: Get JaCoCo Coverage
         id: coverage  
         run: |
