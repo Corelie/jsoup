@@ -30,7 +30,7 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-XX:+StringDeduplication"
+          JAVA_TOOL_OPTIONS: "-XX:+UseG1GC -XX:+UseStringDeduplication -XX:+PrintStringDeduplicationStatistics"
 
       - name: Flags supplementaires utilisees
         run: |
