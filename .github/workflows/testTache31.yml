@@ -30,11 +30,11 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-Xmx2g -Xms1g"
+          JAVA_TOOL_OPTIONS: "-Xmx5g -Xms1g"
 
       - name: Flags supplementaires utilisees
         run: |
-            echo "Les flags supplementaires utilises sont : -Xmx2g -Xms1g"
+            echo "Les flags supplementaires utilises sont : -Xmx5g -Xms1g"
 
       - name: Get JaCoCo Coverage
         id: coverage  
