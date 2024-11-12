@@ -1,4 +1,4 @@
-name: TestTache31
+name: Action1Tache3
 on:
   push:
   pull_request:
@@ -30,7 +30,7 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-Xmx1g -Xms1g -Xlog:gc*"
+          JAVA_TOOL_OPTIONS: "-XX:+UseStringCache"
 
       - name: Flags supplementaires utilisees
         run: |
