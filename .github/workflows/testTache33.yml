@@ -32,10 +32,6 @@ jobs:
         env:
           JAVA_TOOL_OPTIONS: "-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./java_pid<pid>_heap_dump.hprof -XX:+ExitOnOutOfMemoryError "
           
-      - name: Flags supplementaires utilisees
-        run: |
-          echo "Les flags supplementaires utilises sont : -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./java_pid<pid>_heap_dump.hprof -XX:+ExitOnOutOfMemoryError"
-    
 
       - name: Get JaCoCo Coverage
         id: coverage  
@@ -53,3 +49,9 @@ jobs:
           else
             echo "New coverage: $coverage%"
           fi
+
+      - name: Flags supplementaires utilises
+        run: |
+          coverage=$COVERAGE
+          echo "Les flags supplementaires utilises sont : -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./java_pid<pid>_heap_dump.hprof -XX:+ExitOnOutOfMemoryError"
+          echo "Le coverage est de : $coverage"
