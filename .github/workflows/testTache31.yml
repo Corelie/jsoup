@@ -32,10 +32,6 @@ jobs:
         env:
           JAVA_TOOL_OPTIONS: "-XX:+UseG1GC -XX:+UseStringDeduplication "
 
-      - name: Flags supplementaires utilisees
-        run: |
-            echo "Les flags supplementaires utilises sont : -Xmx5g -Xms1g"
-
       - name: Get JaCoCo Coverage
         id: coverage  
         run: |
@@ -52,3 +48,8 @@ jobs:
           else
             echo "New coverage: $coverage%"
           fi
+
+      - name: Flags supplementaires utilisees
+        run: |
+            echo "Les flags supplementaires utilises sont : -XX:+UseG1GC -XX:+UseStringDeduplication "
+            echo "Le coverage est de : $coverage"
