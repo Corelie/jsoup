@@ -30,7 +30,7 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-Xlog:gc*"
+          JAVA_TOOL_OPTIONS: "-Xlog:gc* -Xmx2g -Xms1g"
     
       - name: Flags supplementaires utilisees
         run: |
