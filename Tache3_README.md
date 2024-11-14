@@ -39,3 +39,19 @@ Le deuxième flag   -XX:HeapDumpPath=./java_pid\<pid>_heap_dump.hprof permet d'i
 Le dernier flag -XX:+ExitOnOutOfMemoryError permet de forcer la fin de l'exécution et évite que l'on poursuivre l'exécution dans un état instable suite à cette erreur.
 
 Ces 3 flags permettent donc d'améliorer la qualité, en s'assurant de ne pas poursuivre l'exécution dans un état instable, et l'observabilité, en rendant accessibles les données de la heap ce qui permet de mieux comprendre le code et d'en diagnostiquer les problèmes.
+## Action 4 Tâche_3:
+Cette action utilise les flags -XX:+UseG1GC et -XX:MaxGCPauseMillis=200.
+
+Le flag UseG1GC active le ramasse-miettes (garbage collector) G1, qui est particulièrement efficace pour les applications qui nécessitent des temps de réponse prévisibles. Le ramasse-miettes G1 fonctionne en divisant la mémoire en plusieurs régions, ce qui lui permet de libérer plus efficacement les parties de la mémoire qui ne sont plus utilisées, sans affecter la totalité de la heap.
+
+En complément, le flag MaxGCPauseMillis=200 définit un objectif de pause maximum de 200 millisecondes pour le ramasse-miettes G1. Cela signifie que le garbage collector essaie de ne pas dépasser cette durée de pause lors de l'exécution. Ce flag est particulièrement utile dans des applications qui nécessitent des temps de réponse rapides, car il permet d’éviter les longues pauses pendant lesquelles le garbage collector fonctionne.
+
+Ces flags combinés permettent d’améliorer la performance du code en réduisant les pauses et en assurant une gestion plus efficace de la mémoire.
+## Action 5 Tâche_3:
+Cette action utilise les flags -XX:+AlwaysPreTouch et -XX:ParallelGCThreads=2.
+
+Le flag AlwaysPreTouch force la JVM à charger en mémoire toutes les pages nécessaires au démarrage de l'application. Cette opération réduit les retards dus aux accès à la mémoire pendant l'exécution, car les pages sont déjà chargées et prêtes à être utilisées. Ce flag est particulièrement utile dans des environnements où la latence doit être réduite autant que possible.
+
+Le flag ParallelGCThreads=2 limite le nombre de threads que le ramasse-miettes parallèle utilise à deux. En réduisant le nombre de threads pour la collecte de déchets, nous pouvons limiter l'utilisation de la CPU par le garbage collector dans des environnements où les ressources CPU sont limitées. Cela permet un meilleur équilibre entre l'usage des ressources par le garbage collector et les autres processus de l’application.
+
+Ces flags permettent donc d’améliorer l’efficacité de la gestion de la mémoire et d’optimiser les performances dans des environnements avec des contraintes de ressources, tout en assurant un démarrage plus rapide grâce à la précharge de la mémoire.
