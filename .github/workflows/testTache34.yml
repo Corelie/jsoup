@@ -53,3 +53,8 @@ jobs:
           coverage=$COVERAGE
           echo "Les flags supplementaires utilises sont : -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
           echo "Le coverage est de : $coverage"
+          echo " /\,,,/\    "
+          echo "( o   o )"
+          echo " (  =  )"
+          echo "  (")(")"
+        

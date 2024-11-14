@@ -55,3 +55,7 @@ jobs:
           coverage=$COVERAGE
           echo "Les flags supplementaires utilises sont : -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./java_pid<pid>_heap_dump.hprof -XX:+ExitOnOutOfMemoryError"
           echo "Le coverage est de : $coverage"
+          echo "  /\_/\\"
+          echo "( o.o )"
+          echo " > ^ <"
+          

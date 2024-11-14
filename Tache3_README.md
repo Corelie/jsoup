@@ -2,7 +2,7 @@
 ### Mariel Leano -20218008 Corélie Godefroid -20205217
 ### Choix de l'étude de cas : jsoup
 
-Pour chaque action la section "Flags supplementaires utilises" contient le log du coverage et des flags modifiés pour cette action.
+Pour chaque action la section "Flags supplementaires utilises" contient le log du coverage et des flags modifiés pour cette action. Les logs contiennent tous également un petit dessin de chat différent, qui est notre touche d'humour pour ce devoir!
  
 # Explications des flags choisis:
 

@@ -53,3 +53,11 @@ jobs:
           coverage=$COVERAGE
           echo "Les flags supplementaires utilises sont : -XX:+UseConcMarkSweepGC -XX:ConcGCThreads=2"
           echo "Le coverage est de : $coverage"
+          echo " |\---/|"
+          echo " | o_o |"
+          echo "  \_^_/ "
+          echo "  /   \ "
+          echo " |     |"
+          echo " |     |"
+          echo " /     \ "
+        

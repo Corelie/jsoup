@@ -54,3 +54,4 @@ jobs:
             coverage=$COVERAGE
             echo "Les flags supplementaires utilises sont : -XX:+UseG1GC -XX:+UseStringDeduplication "
             echo "Le coverage est de : $coverage"
+            echo "(=^･ｪ･^=)"

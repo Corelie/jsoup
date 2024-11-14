@@ -54,3 +54,7 @@ jobs:
           coverage=$COVERAGE
           echo "Le flag supplementaire utilise est : -Xlog:gc*"
           echo "Le coverage est de : $coverage"
+          echo "\    /\"
+          echo " )  ( ')"
+          echo "(  /  )"
+          echo " \(__)|"
