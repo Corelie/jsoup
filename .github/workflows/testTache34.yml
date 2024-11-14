@@ -29,7 +29,7 @@ jobs:
       - name: Maven Verify
         run: mvn -X verify -B --file pom.xml
         env:
-          JAVA_TOOL_OPTIONS: "-XX:+UseCompressedOops -XX:+OptimizeStringConcat"
+          JAVA_TOOL_OPTIONS: "-XX:+UseG1GC -XX:MaxGCPauseMillis=200"
 
       - name: Get JaCoCo Coverage
         id: coverage  
@@ -51,6 +51,5 @@ jobs:
       - name: Flags supplementaires utilises
         run: |
           coverage=$COVERAGE
-          echo "Les flags supplementaires utilises sont : -XX:+UseCompressedOops -XX:+OptimizeStringConcat"
+          echo "Les flags supplementaires utilises sont : -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
           echo "Le coverage est de : $coverage"
-
