@@ -52,6 +52,6 @@ Cette action utilise les flags -XX:+AlwaysPreTouch et -XX:ParallelGCThreads=2.
 
 Le flag AlwaysPreTouch force la JVM à charger en mémoire toutes les pages nécessaires au démarrage de l'application. Cette opération réduit les retards dus aux accès à la mémoire pendant l'exécution, car les pages sont déjà chargées et prêtes à être utilisées. Ce flag est particulièrement utile dans des environnements où la latence doit être réduite autant que possible.
 
-Le flag ParallelGCThreads=2 limite le nombre de threads que le ramasse-miettes parallèle utilise à deux. En réduisant le nombre de threads pour la collecte de déchets, nous pouvons limiter l'utilisation de la CPU par le garbage collector dans des environnements où les ressources CPU sont limitées. Cela permet un meilleur équilibre entre l'usage des ressources par le garbage collector et les autres processus de l’application.
+Le flag ParallelGCThreads=2 limite le nombre de threads que le ramasse-miettes parallèle utilise à deux. En réduisant le nombre de threads pour la collecte de déchets, nous pouvons limiter l'utilisation du CPU par le garbage collector dans des environnements où les ressources CPU sont limitées. Cela permet un meilleur équilibre entre l'usage des ressources par le garbage collector et les autres processus de l’application.
 
 Ces flags permettent donc d’améliorer l’efficacité de la gestion de la mémoire et d’optimiser les performances dans des environnements avec des contraintes de ressources, tout en assurant un démarrage plus rapide grâce à la précharge de la mémoire.
